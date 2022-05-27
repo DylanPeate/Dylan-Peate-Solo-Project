@@ -31,7 +31,6 @@ function ProfileButton({ user }) {
     return (
         <>
             <button onClick={openMenu}>
-                <p>Hello Caleb</p>
                 <i class="fa-solid fa-user-astronaut"></i>
             </button>
             {showMenu && (
