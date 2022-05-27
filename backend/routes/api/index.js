@@ -1,39 +1,44 @@
 const express = require('express');
 const router = express.Router();
-const apiRouter = require('./api');
+const asyncHandler = require('express-async-handler');
+const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth.js');
+const { User } = require('../../db/models');
+const sessionRouter = require('./session')
+const usersRouter = require('./users')
 
-router.use('/api', apiRouter);
+router.use('/session', sessionRouter)
+router.use('/users', usersRouter)
 
-// Static routes
-// Serve React build files in production
-if (process.env.NODE_ENV === 'production') {
-    const path = require('path');
-    // Serve the frontend's index.html file at the root route
-    router.get('/', (req, res) => {
-        res.cookie('XSRF-TOKEN', req.csrfToken());
-        res.sendFile(
-            path.resolve(__dirname, '../../frontend', 'build', 'index.html')
-        );
+
+router.get('/set-token-cookie', asyncHandler(async (req, res) => {
+    const user = await User.findOne({
+        where: {
+            username: 'Demo-lition'
+        }
     });
 
-    // Serve the static assets in the frontend's build folder
-    router.use(express.static(path.resolve("../frontend/build")));
+    setTokenCookie(res, user);
+    return res.json({ user });
+}));
 
-    // Serve the frontend's index.html file at all other routes NOT starting with /api
-    router.get(/^(?!\/?api).*/, (req, res) => {
-        res.cookie('XSRF-TOKEN', req.csrfToken());
-        res.sendFile(
-            path.resolve(__dirname, '../../frontend', 'build', 'index.html')
-        );
-    });
-}
+router.get(
+    '/restore-user',
+    restoreUser,
+    (req, res) => {
+        return res.json(req.user);
+    }
+);
 
-// Add a XSRF-TOKEN cookie in development
-if (process.env.NODE_ENV !== 'production') {
-    router.get('/api/csrf/restore', (req, res) => {
-        res.cookie('XSRF-TOKEN', req.csrfToken());
-        res.status(201).json({});
-    });
-}
+router.get(
+    '/require-auth',
+    requireAuth,
+    (req, res) => {
+        return res.json(req.user);
+    }
+);
+
+router.post('/test', (req, res) => {
+    res.json({ requestBody: req.body });
+});
 
 module.exports = router;
