@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Comments', {
+    return queryInterface.createTable('FavoriteAlbums', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -13,14 +13,10 @@ module.exports = {
         allowNull: false,
         references: { model: 'Users' }
       },
-      body: {
-        type: Sequelize.STRING(255),
-        allowNull: false
-      },
-      pictureId: {
+      albumId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model: 'Pictures' }
+        references: { model: 'Albums' }
       },
       createdAt: {
         allowNull: false,
@@ -33,6 +29,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Comments');
+    return queryInterface.dropTable('FavoriteAlbums');
   }
 };
