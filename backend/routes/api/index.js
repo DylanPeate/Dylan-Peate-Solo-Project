@@ -5,9 +5,11 @@ const { setTokenCookie, restoreUser, requireAuth } = require('../../utils/auth.j
 const { User } = require('../../db/models');
 const sessionRouter = require('./session')
 const usersRouter = require('./users')
+const picturesRouter = require('./pictures')
 
 router.use('/session', sessionRouter)
 router.use('/users', usersRouter)
+router.use('/pictures', picturesRouter)
 
 
 router.get('/set-token-cookie', asyncHandler(async (req, res) => {

@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     pictureId: DataTypes.INTEGER
   }, {});
   Album.associate = function (models) {
-    Album.hasMany(models.Picture, { foreignKey: 'pictureId' })
+    Album.hasMany(models.Picture, { foreignKey: 'albumId' })
   };
   return Album;
 };
