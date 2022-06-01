@@ -5,6 +5,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Pictures from './components/Pictures';
+import PictureMenu from './components/PictureMenu';
 
 function App() {
   const dispatch = useDispatch();
@@ -23,6 +24,9 @@ function App() {
           </Route>
           <Route path='/'>
             <Pictures />
+          </Route>
+          <Route path='/picture/:pictureId'>
+            <PictureMenu />
           </Route>
         </Switch>
       )}
