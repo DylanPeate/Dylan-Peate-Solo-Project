@@ -56,6 +56,19 @@ export const deletePictureThunk = (selectedPic) => async dispatch => {
     return deletedPic
 }
 
+export const createPicture = (photo) => async dispatch => {
+    const response = await csrfFetch(`/api/pictures/`, {
+        method: 'POST',
+        body: JSON.stringify(photo)
+    })
+
+    if (response.ok) {
+        const newPic = await response.json()
+        dispatch(addPicture(newPic))
+        return newPic
+    }
+}
+
 //REDUCER
 
 const pictureReducer = (state = {}, action) => {

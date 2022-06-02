@@ -8,7 +8,6 @@ function PictureEditForm() {
     const pictureId = useParams().pictureId
     const pictures = useSelector(state => state.pictures)
     const selectedPicture = pictures[pictureId]
-    console.log(selectedPicture, '<---')
     const history = useHistory();
     const dispatch = useDispatch();
     let sessionUser = useSelector(state => state.session.user);
@@ -56,6 +55,7 @@ function PictureEditForm() {
 
     return (
         <>
+            <img id='editFormPic' src={selectedPicture?.imageLink}></img>
             <form id='pictureEditForm' onSubmit={e => handleSubmit(e)}>
                 {errors && <ul>
                     {errors.map((error, i) => <li key={i}>{error}</li>)}
