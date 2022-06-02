@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPictures } from '../../store/pictures';
+import { useHistory } from 'react-router-dom';
 import './pictures.css'
 
 function Pictures() {
     const dispatch = useDispatch()
+    const history = useHistory()
     const sessionUser = useSelector((state) => state.session.user);
 
     const pictures = Object.values(useSelector(state => state.pictures))
@@ -14,13 +16,14 @@ function Pictures() {
     }, [dispatch])
 
     if (sessionUser) {
-
         return (
-            <div>
+            <div className='photogrid'>
                 {
                     pictures.map((picture) => {
                         return (
-                            <img src={picture.imageLink}></img>
+                            <div className='picture-container' key={picture.id}>
+                                <img src={picture?.imageLink} onClick={() => history.push(`/picture/${picture.id}`)} className='picture'></img>
+                            </div>
                         )
                     })
                 }
