@@ -22,7 +22,7 @@ function Pictures() {
                     pictures.map((picture) => {
                         return (
                             <div className='picture-container' key={picture.id}>
-                                <img src={picture.imageLink} onClick={() => history.push(`/picture/${picture.id}`)} className='picture'></img>
+                                <img src={picture?.imageLink} onClick={() => history.push(`/picture/${picture.id}`)} className='picture'></img>
                             </div>
                         )
                     })

@@ -1,5 +1,6 @@
 import { csrfFetch } from './csrf';
 const LOAD_PICTURES = 'pictures/LOAD'
+const ADD_PICTURE = 'pictures/add'
 
 // Action Creators
 const load = list => ({
@@ -7,14 +8,33 @@ const load = list => ({
     list
 })
 
+const addPicture = picture => ({
+    type: ADD_PICTURE,
+    picture
+})
+
 //THUNK ACTION CREATORS
 
 export const getPictures = () => async dispatch => {
     const response = await csrfFetch(`/api/pictures/`)
-
+    console.log(response, '<----RESP')
     if (response.ok) {
         const pictures = await response.json()
         dispatch(load(pictures))
+        return pictures;
+    }
+}
+
+export const editPicture = (photo) => async dispatch => {
+    const response = await csrfFetch(`/api/pictures/${photo.id}`, {
+        method: 'PUT',
+        body: JSON.stringify(photo)
+    })
+
+    if (response.ok) {
+        const editedPicture = await response.json();
+        dispatch(addPicture(photo))
+        return editedPicture
     }
 }
 
@@ -32,5 +52,6 @@ const pictureReducer = (state = {}, action) => {
             return state;
     }
 }
+
 
 export default pictureReducer;

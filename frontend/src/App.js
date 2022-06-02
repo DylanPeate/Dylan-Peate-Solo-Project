@@ -6,6 +6,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Pictures from './components/Pictures';
 import PictureMenu from './components/PictureMenu';
+import PictureEditForm from './components/PictureEditForm'
 
 function App() {
   const dispatch = useDispatch();
@@ -22,11 +23,14 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path='/'>
+          <Route exact path='/'>
             <Pictures />
           </Route>
           <Route path='/picture/:pictureId'>
             <PictureMenu />
+          </Route>
+          <Route path='/picture/:pictureId/edit'>
+            <PictureEditForm />
           </Route>
         </Switch>
       )}
