@@ -1,6 +1,7 @@
 import { csrfFetch } from './csrf';
 const LOAD_PICTURES = 'pictures/LOAD'
 const ADD_PICTURE = 'pictures/add'
+const DELETE_PICTURE = 'pictures/delete'
 
 // Action Creators
 const load = list => ({
@@ -13,11 +14,17 @@ const addPicture = picture => ({
     picture
 })
 
+const deletePicture = (pictureId) => {
+    return {
+        type: DELETE_PICTURE,
+        pictureId
+    }
+}
+
 //THUNK ACTION CREATORS
 
 export const getPictures = () => async dispatch => {
     const response = await csrfFetch(`/api/pictures/`)
-    console.log(response, '<----RESP')
     if (response.ok) {
         const pictures = await response.json()
         dispatch(load(pictures))
@@ -38,12 +45,13 @@ export const editPicture = (photo) => async dispatch => {
     }
 }
 
-export const deletePicture = (photo) => async dispatch => {
-    const res = await csrfFetch('/api/pictures/', {
+export const deletePictureThunk = (selectedPic) => async dispatch => {
+    console.log(JSON.stringify(selectedPic))
+    const response = await csrfFetch('/api/pictures/delete', {
         method: "DELETE",
-        body: JSON.stringify(deletedPic)
+        body: JSON.stringify(selectedPic)
     })
-    const deletedPic = await res.json();
+    const deletedPic = await response.json();
     dispatch(deletePicture(deletedPic))
     return deletedPic
 }
@@ -58,6 +66,12 @@ const pictureReducer = (state = {}, action) => {
                 allPictures[picture.id] = picture;
             });
             return allPictures
+        case DELETE_PICTURE:
+            const deletedState = { ...state }
+            delete deletedState[action.photoId]
+            return deletedState
+        case ADD_PICTURE:
+            return { ...state, [action.picture.id]: action.picture }
         default:
             return state;
     }

@@ -52,7 +52,7 @@ router.put('/:id', pictureValidation, requireAuth, asyncHandler(async function (
         latitude
     } = req.body
 
-    const selectedPicture = await Picture.findByPk(id)
+    const selectedPicture = await db.Picture.findByPk(id)
     const editedPicture = selectedPicture.update(
         {
             id,
@@ -69,14 +69,15 @@ router.put('/:id', pictureValidation, requireAuth, asyncHandler(async function (
 }))
 
 //delete photo
-router.delete('/', requireAuth, asyncHandler(async function (req, res) {
-    const deletedPicture = await Picture.findByPk(req.body.id)
+router.delete('/delete', requireAuth, asyncHandler(async function (req, res) {
+    console.log('i hit api')
+    const deletedPicture = await db.Picture.findByPk(req.body.id)
     await deletedPicture.destroy()
     return res.json(req.body.id)
 }))
 //upload photo
 router.post('/', pictureValidation, requireAuth, asyncHandler(async function (req, res) {
-    const createdPic = await Picture.create(req.body)
+    const createdPic = await db.Picture.create(req.body)
     return res.json(createdPic)
 }))
 

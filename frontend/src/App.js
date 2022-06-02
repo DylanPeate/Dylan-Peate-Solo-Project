@@ -26,10 +26,10 @@ function App() {
           <Route exact path='/'>
             <Pictures />
           </Route>
-          <Route path='/picture/:pictureId'>
+          <Route exact path='/picture/:pictureId'>
             <PictureMenu />
           </Route>
-          <Route exact path='/picture/:pictureId/edit'>
+          <Route path='/picture/:pictureId/edit'>
             <PictureEditForm />
           </Route>
         </Switch>

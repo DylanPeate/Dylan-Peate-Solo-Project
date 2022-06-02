@@ -1,21 +1,21 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
-import { getPictures, editPicture } from '../../store/pictures';
+import { getPictures, editPicture, deletePictureThunk } from '../../store/pictures';
 import './PictureEditForm.css'
 
 function PictureEditForm() {
-    console.log("HIT EDIT FORM")
     const pictureId = useParams().pictureId
-    const pictures = Object.values(useSelector(state => state.pictures))
-    const selectedPicture = pictures[pictureId - 1]
+    const pictures = useSelector(state => state.pictures)
+    const selectedPicture = pictures[pictureId]
+    console.log(selectedPicture, '<---')
     const history = useHistory();
     const dispatch = useDispatch();
     let sessionUser = useSelector(state => state.session.user);
 
     //state
-    const [title, setTitle] = useSelector(selectedPicture.title || '')
-    const [description, setDescription] = useSelector(selectedPicture.description || '')
+    const [title, setTitle] = useState(selectedPicture.title || '')
+    const [description, setDescription] = useState(selectedPicture.description || '')
     const [errors, setErrors] = useState([]);
 
     useEffect(() => {
@@ -30,8 +30,7 @@ function PictureEditForm() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const selectedPicture = {
+        const editPic = {
             id: selectedPicture.id,
             userId: sessionUser.id,
             albumId: selectedPicture.albumId,
@@ -42,12 +41,17 @@ function PictureEditForm() {
             longitude: selectedPicture.longitude,
             latitude: selectedPicture.latitude
         }
-        dispatch(editPicture(selectedPicture))
-            .then(() => history.push('/'))
+        dispatch(editPicture(editPic))
+            .then(() => history.push(`/picture/${selectedPicture.id}`))
             .catch(async (res) => {
                 const data = await res.json()
                 if (data && errors) setErrors(data.errors)
             })
+    }
+
+    function delPic(picture) {
+        dispatch(deletePictureThunk(picture))
+            .then(() => history.push('/'))
     }
 
     return (
@@ -64,6 +68,17 @@ function PictureEditForm() {
                     type='text'
                     placeholder={selectedPicture.title}
                 />
+                <label>Description:</label>
+                <input
+                    name='description'
+                    value={description}
+                    onChange={e => setDescription(e.target.value)}
+                    placeholder={selectedPicture.description}
+                />
+                <div className='editPageBtn'>
+                    <button id='editSubmitBtn' type='submit'>Submit</button>
+                    <button className='deletePicBtn' onClick={() => delPic(selectedPicture)}>Delete Picture</button>
+                </div>
             </form>
         </>
     )
