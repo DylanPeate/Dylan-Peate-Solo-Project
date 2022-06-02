@@ -69,12 +69,15 @@ router.put('/:id', pictureValidation, requireAuth, asyncHandler(async function (
 }))
 
 //delete photo
-router.delete('/:id', asyncHandler(async function (req, res) {
-
+router.delete('/', requireAuth, asyncHandler(async function (req, res) {
+    const deletedPicture = await Picture.findByPk(req.body.id)
+    await deletedPicture.destroy()
+    return res.json(req.body.id)
 }))
 //upload photo
-router.post('/', asyncHandler(async function (req, res) {
-
+router.post('/', pictureValidation, requireAuth, asyncHandler(async function (req, res) {
+    const createdPic = await Picture.create(req.body)
+    return res.json(createdPic)
 }))
 
 module.exports = router;

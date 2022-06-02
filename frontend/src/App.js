@@ -29,7 +29,7 @@ function App() {
           <Route path='/picture/:pictureId'>
             <PictureMenu />
           </Route>
-          <Route path='/picture/:pictureId/edit'>
+          <Route exact path='/picture/:pictureId/edit'>
             <PictureEditForm />
           </Route>
         </Switch>

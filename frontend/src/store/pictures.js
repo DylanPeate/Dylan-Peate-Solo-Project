@@ -38,6 +38,16 @@ export const editPicture = (photo) => async dispatch => {
     }
 }
 
+export const deletePicture = (photo) => async dispatch => {
+    const res = await csrfFetch('/api/pictures/', {
+        method: "DELETE",
+        body: JSON.stringify(deletedPic)
+    })
+    const deletedPic = await res.json();
+    dispatch(deletePicture(deletedPic))
+    return deletedPic
+}
+
 //REDUCER
 
 const pictureReducer = (state = {}, action) => {
