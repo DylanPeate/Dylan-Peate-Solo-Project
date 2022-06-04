@@ -6,10 +6,13 @@ const { User } = require('../../db/models');
 const sessionRouter = require('./session')
 const usersRouter = require('./users')
 const picturesRouter = require('./pictures')
+const commentsRouter = require('./comment')
+
 
 router.use('/session', sessionRouter)
 router.use('/users', usersRouter)
 router.use('/pictures', picturesRouter)
+router.use('/comments', commentsRouter)
 
 
 router.get('/set-token-cookie', asyncHandler(async (req, res) => {
