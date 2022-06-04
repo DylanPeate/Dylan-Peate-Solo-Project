@@ -2,10 +2,12 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import sessionReducer from './session';
 import pictureReducer from "./pictures";
+import commentReducer from "./comment";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
-  pictures: pictureReducer
+  pictures: pictureReducer,
+  comments: commentReducer
 });
 
 let enhancer;

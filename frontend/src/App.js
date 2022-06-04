@@ -8,6 +8,7 @@ import Pictures from './components/Pictures';
 import PictureMenu from './components/PictureMenu';
 import PictureEditForm from './components/PictureEditForm'
 import PictureCreation from "./components/PictureCreation";
+import { getPictures } from "./store/pictures";
 
 function App() {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ function App() {
   const sessionUser = useSelector(state => state.session.user)
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    dispatch(getPictures())
   }, [dispatch]);
 
   return (
