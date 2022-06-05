@@ -41,7 +41,9 @@ function Navigation({ isLoaded }) {
         <div className='navBar-container'>
             <div className='homeIcon'>
                 <NavLink exact to="/">
-                    <i className="fa-solid fa-house fa-2xl navBtn"></i>
+                    <i id="homeBtnIcon" className="fa-solid fa-house fa-2xl navBtn">
+                        Pictore
+                    </i>
                 </NavLink>
             </div>
             <div className='topRight'>

@@ -1,0 +1,9 @@
+.allComments {
+    width: 70vw;
+}
+
+.comment {
+    display: flex;
+    flex-direction: column;
+    padding: .5rem;
+}

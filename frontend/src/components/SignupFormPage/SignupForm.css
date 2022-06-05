@@ -1,1 +1,40 @@
-body {}
+.signupformcontain {
+    display: flex;
+    flex-direction: column;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+label {
+    width: 100vw;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+}
+
+.signuperrors {
+    font-weight: bolder;
+    font-size: large;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+li {
+    display: flex;
+    align-self: center;
+    padding: .3rem;
+}
+
+input {
+    display: flex;
+    align-self: center;
+    width: 90vw;
+}

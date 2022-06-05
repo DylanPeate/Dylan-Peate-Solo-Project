@@ -38,9 +38,9 @@ function PictureCreation() {
     }
 
     return (
-        <>
+        <div className="picFormContain">
             <form id='createPictureForm' onSubmit={e => handleSubmit(e)}>
-                <ul>
+                <ul className="picFormErrors">
                     {errors.map((error, i) => <li key={i}>{error}</li>)}
                 </ul>
                 <label>Picture URL:</label>
@@ -67,10 +67,12 @@ function PictureCreation() {
                     onChange={e => setDescription(e.target.value)}
                     placeholder='Description of your photo'
                 />
-                <button id="picCreateFormBtn" type="submit">Submit</button>
-                <button id="picCreateCancelBtn" onClick={() => (history.push('/'))}>Cancel</button>
+                <div className="picFormBtnContain">
+                    <button id="picCreateFormBtn" type="submit">Submit</button>
+                    <button id="picCreateCancelBtn" onClick={() => (history.push('/'))}>Cancel</button>
+                </div>
             </form>
-        </>
+        </div>
     )
 }
 

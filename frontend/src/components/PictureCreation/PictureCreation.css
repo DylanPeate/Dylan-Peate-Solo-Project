@@ -1,0 +1,34 @@
+.picFormContain {
+    display: flex;
+    flex-direction: column;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+label {
+    padding: 1rem;
+}
+
+.picFormBtnContain {
+    padding: .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.picFormErrors {
+    font-weight: bolder;
+    font-size: large;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+li {
+    padding: .3rem;
+}

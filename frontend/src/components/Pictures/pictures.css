@@ -27,10 +27,13 @@
 
 .pictureCaption {
     overflow-wrap: break-word;
+    overflow: hidden;
+    line-height: 16px;
+    white-space: normal;
     width: fit-content;
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: .25rem;
     padding: 25px 15px 15px;
     font-family: 'Raleway', sans-serif;
     font-size: 14px;

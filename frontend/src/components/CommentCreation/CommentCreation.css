@@ -1,0 +1,19 @@
+.commentCreation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.commentButtons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.commentCreateSubBtn {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.picCreateCancelBtn {}
