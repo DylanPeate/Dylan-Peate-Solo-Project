@@ -44,6 +44,9 @@ function App() {
           <Route exact path='/pictures/:userId'>
             <UserPictures />
           </Route>
+          <Route>
+            {sessionUser ? <Pictures /> : <SplashPage />}
+          </Route>
         </Switch>
       )}
     </>
