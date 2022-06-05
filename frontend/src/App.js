@@ -9,6 +9,7 @@ import PictureMenu from './components/PictureMenu';
 import PictureEditForm from './components/PictureEditForm'
 import PictureCreation from "./components/PictureCreation";
 import SplashPage from './components/SplashPage'
+import UserPictures from "./components/UserPictures";
 import { getPictures } from "./store/pictures";
 
 function App() {
@@ -39,6 +40,9 @@ function App() {
           </Route>
           <Route exact path='/picture/:pictureId/edit'>
             <PictureEditForm />
+          </Route>
+          <Route exact path='/pictures/:userId'>
+            <UserPictures />
           </Route>
         </Switch>
       )}

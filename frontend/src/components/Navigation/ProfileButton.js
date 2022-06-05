@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 import * as sessionActions from '../../store/session';
 import './Navigation.css'
 
 function ProfileButton({ user }) {
     const dispatch = useDispatch();
+    const sessionUser = useSelector(state => state.session.user);
     const [showMenu, setShowMenu] = useState(true);
     const history = useHistory()
 
@@ -43,7 +44,7 @@ function ProfileButton({ user }) {
 
     const visitProfile = (e) => {
         e.preventDefault();
-        history.push('/')
+        history.push(`/pictures/${sessionUser.id}`)
     }
 
     return (
