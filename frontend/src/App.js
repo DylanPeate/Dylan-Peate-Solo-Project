@@ -8,6 +8,7 @@ import Pictures from './components/Pictures';
 import PictureMenu from './components/PictureMenu';
 import PictureEditForm from './components/PictureEditForm'
 import PictureCreation from "./components/PictureCreation";
+import SplashPage from './components/SplashPage'
 import { getPictures } from "./store/pictures";
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route exact path='/'>
-            <Pictures />
+            {sessionUser ? <Pictures /> : <SplashPage />}
           </Route>
           <Route exact path='/picture/:pictureId'>
             <PictureMenu />

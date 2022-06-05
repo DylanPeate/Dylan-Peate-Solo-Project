@@ -46,7 +46,6 @@ export const editPicture = (photo) => async dispatch => {
 }
 
 export const deletePictureThunk = (selectedPic) => async dispatch => {
-    console.log(JSON.stringify(selectedPic))
     const response = await csrfFetch('/api/pictures/delete', {
         method: "DELETE",
         body: JSON.stringify(selectedPic)

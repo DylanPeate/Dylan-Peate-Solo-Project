@@ -6,6 +6,7 @@ import './CommentCreation.css'
 
 function CommentCreation({ picture, setCommentCreate }) {
     const sessionUser = useSelector((state) => state.session.user);
+    console.log(sessionUser, '< SessionUser')
     const history = useHistory();
     const dispatch = useDispatch();
     const SelectedPictureId = picture.id
@@ -28,7 +29,8 @@ function CommentCreation({ picture, setCommentCreate }) {
         const newComment = {
             userId: sessionUser.id,
             body,
-            pictureId: SelectedPictureId
+            pictureId: SelectedPictureId,
+            commentUser: sessionUser.username
         }
 
         await dispatch(createComment(newComment))

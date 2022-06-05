@@ -70,7 +70,6 @@ router.put('/:id', pictureValidation, requireAuth, asyncHandler(async function (
 
 //delete photo
 router.delete('/delete', requireAuth, asyncHandler(async function (req, res) {
-    console.log('i hit api')
     const deletedPicture = await db.Picture.findByPk(req.body.id)
     await deletedPicture.destroy()
     return res.json(req.body.id)

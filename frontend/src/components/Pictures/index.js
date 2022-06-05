@@ -10,6 +10,7 @@ function Pictures() {
     const sessionUser = useSelector((state) => state.session.user);
 
     const pictures = Object.values(useSelector(state => state.pictures))
+    const reversePics = [...pictures].reverse()
 
     useEffect(() => {
         dispatch(getPictures())
@@ -19,10 +20,11 @@ function Pictures() {
         return (
             <div className='photogrid'>
                 {
-                    pictures.map((picture) => {
+                    reversePics.map((picture) => {
                         return (
                             <div className='picture-container' key={picture.id}>
                                 <img src={picture?.imageLink} onClick={() => history.push(`/picture/${picture.id}`)} className='picture'></img>
+                                <figcaption className='pictureCaption'>{picture?.title}</figcaption>
                             </div>
                         )
                     })
