@@ -9,7 +9,9 @@ const { requireAuth } = require('../../utils/auth')
 const pictureValidation = [
     check('imageLink')
         .exists({ checkFalsy: true })
-        .withMessage('Please provide an image URL'),
+        .withMessage('Please provide an image URL')
+        .matches(/(https:\/\/)([^\s(["<,>/]*)(\/)[^\s[",><]*(.png|.jpg)(\?[^\s[",><]*)?/)
+        .withMessage('Please enter a valid image link'),
     check('title')
         .exists({ checkFalsy: true })
         .withMessage('Please Provide a Title')

@@ -9,6 +9,7 @@ import PictureMenu from './components/PictureMenu';
 import PictureEditForm from './components/PictureEditForm'
 import PictureCreation from "./components/PictureCreation";
 import SplashPage from './components/SplashPage'
+// import UserPictures from "./components/UserPictures";
 import UserPictures from "./components/UserPictures";
 import { getPictures } from "./store/pictures";
 
