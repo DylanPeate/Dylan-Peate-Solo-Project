@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getPictures } from '../../store/pictures';
 import { useHistory } from 'react-router-dom';
 import './UserPictures.css'
-
+//hopefully this works
 function UserPictures() {
     const dispatch = useDispatch()
     const history = useHistory()
