@@ -10,11 +10,9 @@ function UserPictures() {
     const sessionUser = useSelector((state) => state.session.user);
 
     const pictures = Object.values(useSelector(state => state.pictures))
-    console.log(pictures, 'pics')
     const reversePics = [...pictures].filter(picture => {
         return picture.userId === sessionUser.id
     }).reverse()
-    console.log(reversePics, 'reverse')
 
     useEffect(() => {
         dispatch(getPictures())

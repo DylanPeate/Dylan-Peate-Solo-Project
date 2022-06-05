@@ -26,7 +26,7 @@ function PictureMenu() {
     }, [dispatch])
 
     useEffect(() => {
-        console.log('STATE CHANGED')
+        // console.log('STATE CHANGED')
     }, [commentCreate])
 
     function editPic(picture) {
