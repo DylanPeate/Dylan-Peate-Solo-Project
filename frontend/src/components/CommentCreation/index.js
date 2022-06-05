@@ -21,7 +21,6 @@ function CommentCreation({ picture, setCommentCreate }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(errors)
         if (body.length < 255) {
             setErrors([]);
             setCommentCreate(false)
