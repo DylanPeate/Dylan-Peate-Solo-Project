@@ -11,26 +11,44 @@ function Navigation({ isLoaded }) {
     let sessionLinks;
     if (sessionUser) {
         sessionLinks = (
-            <ProfileButton user={sessionUser} />
+            <>
+                <div className='uploadIcon'>
+                    <NavLink exact to='/picture/create'>
+                        <i className="fa-solid fa-file-arrow-up fa-2xl navBtn"></i>
+                    </NavLink>
+                </div>
+                <ProfileButton user={sessionUser} />
+            </>
         );
     } else {
         sessionLinks = (
             <>
-                <LoginFormModal />
-                <NavLink to="/signup">Sign Up</NavLink>
+                <div className='topRight'>
+                    <div className='loginForm'>
+                        <LoginFormModal />
+                    </div>
+                    <div className='signup'>
+                        <NavLink to="/signup">
+                            <i className="fa-solid fa-user-plus fa-2xl navBtn"></i>
+                        </NavLink>
+                    </div>
+                </div>
             </>
         );
     }
 
     return (
-        <div className='navBar'>
-            <ul>
-                <li>
-                    <NavLink exact to="/">Home</NavLink>
-                    <NavLink exact to='/picture/create'>Upload</NavLink>
+        <div className='navBar-container'>
+            <div className='homeIcon'>
+                <NavLink exact to="/">
+                    <i className="fa-solid fa-house fa-2xl navBtn"></i>
+                </NavLink>
+            </div>
+            <div className='topRight'>
+                <div className='sessionLinks'>
                     {isLoaded && sessionLinks}
-                </li>
-            </ul>
+                </div>
+            </div>
         </div>
     );
 }
