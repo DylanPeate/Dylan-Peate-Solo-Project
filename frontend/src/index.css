@@ -113,7 +113,7 @@ body {
     align-items: center;
     min-height: 100vh;
     min-width: 100vw;
-    font-family: 'Helvetica Neue';
+    font-family: "Roboto", sans-serif;
     line-height: 1;
 }
 
@@ -124,7 +124,7 @@ body {
     /* justify-content: center; */
     min-height: 100vh;
     min-width: 100vw;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: "Roboto", sans-serif;
     line-height: 1;
 }
 
@@ -153,10 +153,65 @@ table {
 
 /* ^ STYLE RESET ^ */
 
-.root {
-    background-color: #1c1c1c;
+#root {
+    background-color: #464646;
+    width: 100vw;
+    height: 100vh;
 }
 
-.body {
+body {
+    background-color: #464646;
+}
+
+form {
+    background-color: #464646;
+}
+
+button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 6px 14px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    color: #FFFDD0;
     background-color: #1c1c1c;
+    border: none;
+    box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
+}
+
+input {
+    background-color: #464646;
+    border: .2rem solid #FFFDD0;
+    font-size: 1rem;
+    padding: 1rem 1.5rem;
+    color: #fff;
+    border-radius: .8rem;
+    background: #171d2e;
+}
+
+input:focus {
+    outline: none;
+}
+
+label {
+    top: 50%;
+    font-size: 1.4rem;
+    /* color: #fff; */
+    transition: all .25s linear;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #1c1c1c inset !important;
+}
+
+input:-webkit-autofill {
+    -webkit-text-fill-color: #FFFDD0 !important;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }

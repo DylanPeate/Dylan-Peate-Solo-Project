@@ -6,15 +6,12 @@ import './CommentCreation.css'
 
 function CommentCreation({ picture, setCommentCreate }) {
     const sessionUser = useSelector((state) => state.session.user);
-    console.log(sessionUser, '< SessionUser')
     const history = useHistory();
     const dispatch = useDispatch();
     const SelectedPictureId = picture.id
     const [errors, setErrors] = useState([])
 
-    // const [userId, setUserId] = useState(sessionUser.id)
     const [body, setBody] = useState('')
-    // const [pictureId, setPictureId] = useState(SelectedPictureId)
 
     useEffect(() => {
         if (!sessionUser) {
@@ -24,44 +21,57 @@ function CommentCreation({ picture, setCommentCreate }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setCommentCreate(false)
+        console.log(errors)
+        if (body.length < 255) {
+            setErrors([]);
+            setCommentCreate(false)
 
-        const newComment = {
-            userId: sessionUser.id,
-            body,
-            pictureId: SelectedPictureId,
-            commentUser: sessionUser.username
+
+            const newComment = {
+                userId: sessionUser.id,
+                body,
+                pictureId: SelectedPictureId,
+                commentUser: sessionUser.username
+            }
+
+            await dispatch(createComment(newComment))
+                // .then((createdComment) => history.push(`/picture/${SelectedPictureId}`))
+                .catch(async (res) => {
+                    const data = await res.json()
+                    if (data && errors) setErrors(data.errors)
+                })
         }
-
-        await dispatch(createComment(newComment))
-            .then((createdComment) => history.push(`/picture/${SelectedPictureId}`))
-            .catch(async (res) => {
-                const data = await res.json()
-                if (data && errors) setErrors(data.errors)
-            })
+        return setErrors(['Comment body must be less than 255 characters.'])
         //create form, create button to make comment
     }
-
+    let subBtnBool = () => {
+        if (errors.length) {
+            return false;
+        } return true;
+    }
     return (
-        <div>
+        <div className="commentCreation">
             <form id='createCommentForm' onSubmit={e => handleSubmit(e)}>
                 <ul>
                     {errors.map((error, i) => <li key={i}>{error}</li>)}
                 </ul>
-                <label>Comment</label>
-                <input
-                    name="body"
-                    type='text'
-                    value={body}
-                    onChange={e => setBody(e.target.value)}
-                    placeholder='Enter your thoughts'
-                />
-                <button id="commentCreateSubBtn" type="submit">Submit</button>
-            </form>
-            <div>
-                <button id="picCreateCancelBtn" onClick={() => (setCommentCreate(false))}>Cancel</button>
-            </div>
-        </div>
+                <div className="commentCreateContainer">
+                    {/* <label>Comment</label> */}
+                    <input
+                        name="body"
+                        type='text'
+                        value={body}
+                        onChange={e => setBody(e.target.value)}
+                        placeholder='Enter your thoughts'
+                        required
+                    />
+                </div>
+                <div className="commentButtons">
+                    <button className="commentCreateSubBtn" type="submit" >Submit</button>
+                    <button className="picCreateCancelBtn" onClick={() => (setCommentCreate(false))}>Cancel</button>
+                </div>
+            </form >
+        </div >
     )
 }
 

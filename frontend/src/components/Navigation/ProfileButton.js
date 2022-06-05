@@ -6,7 +6,7 @@ import './Navigation.css'
 
 function ProfileButton({ user }) {
     const dispatch = useDispatch();
-    const [showMenu, setShowMenu] = useState(false);
+    const [showMenu, setShowMenu] = useState(true);
     const history = useHistory()
 
     const openMenu = () => {
@@ -48,9 +48,11 @@ function ProfileButton({ user }) {
 
     return (
         <>
-            <button onClick={openMenu} id='userMenu'>
-                <i className="fa-solid fa-user-astronaut"></i>
-            </button>
+            <div className="userMenuContainer">
+                <button onClick={openMenu} id='userMenu' >
+                    <i className="fa-solid fa-user-astronaut"></i>
+                </button>
+            </div>
             {true && (
                 <div className="slideIn">
                     <ul className="profile-dropdown">

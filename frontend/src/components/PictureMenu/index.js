@@ -39,15 +39,19 @@ function PictureMenu() {
 
     return (
         <div className='menuImageContainer'>
-            <img id='pictureMenuImage' src={selectedPicture?.imageLink}></img>
-            {sessionUser.id === selectedPicture?.userId && <button onClick={() => editPic(selectedPicture)} className='editPictureBtn'>Edit Picture</button>}
-            {sessionUser.id === selectedPicture?.userId && <button className='deletePicBtn' onClick={() => delPic(selectedPicture)}>Delete Picture</button>}
+            <div className='userBtns'>
+                {sessionUser.id === selectedPicture?.userId && <button onClick={() => editPic(selectedPicture)} className='editPictureBtn BTN'>Edit Picture</button>}
+                {sessionUser.id === selectedPicture?.userId && <button className='deletePicBtn BTN' onClick={() => delPic(selectedPicture)}>Delete Picture</button>}
+            </div>
+            <div className='pictureContainer'>
+                <img id='pictureMenuImage' src={selectedPicture?.imageLink}></img>
+            </div>
             <div className='pictureDetails'>
-                <h2 id='pictureTitle'>{selectedPicture?.title}</h2>
-                <h2 id='pictureDescription'>{selectedPicture?.description}</h2>
+                <p id='pictureTitle'>{selectedPicture?.title}</p>
+                <p id='pictureDescription'>{selectedPicture?.description}</p>
             </div>
             <div className='createCommentBtnContainer'>
-                <button id='createCommentBtn' onClick={() => setCommentCreate(!commentCreate)}>Create Comment</button>
+                <button className='createCommentBtn BTN' onClick={() => setCommentCreate(!commentCreate)}>Create Comment</button>
                 {
                     commentCreate && <CommentCreation picture={selectedPicture} setCommentCreate={setCommentCreate} />
                 }
@@ -55,7 +59,7 @@ function PictureMenu() {
             <div id='showCommentsContainer'>
                 <ShowComments />
             </div>
-        </div>
+        </div >
     )
 
 

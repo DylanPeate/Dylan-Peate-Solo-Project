@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { getComments, deleteCommentThunk } from '../../store/comment'
 import './Comments.css'
 
@@ -20,14 +20,14 @@ function ShowComments(picture) {
             }
         }
         stiliFunc()
-    }, [dispatch])
+    }, [dispatch, selectedPicture])
 
     const delComment = comment => {
         dispatch(deleteCommentThunk(comment))
     }
 
     return (
-        <div>
+        <div className='allComments'>
             {
                 comments.length > 0 && reversedComments.map(comment => {
                     return (
@@ -39,7 +39,9 @@ function ShowComments(picture) {
                                 {comment.body}
                             </div>
                             <div className='commentDelBtnDiv'>
-                                <button className='commentDelBtn' onClick={() => delComment(comment)}>Delete</button>
+                                {
+                                    sessionUser.id === comment.userId && <button className='commentDelBtn' onClick={() => delComment(comment)}>Delete</button>
+                                }
                             </div>
                         </div>
                     )
