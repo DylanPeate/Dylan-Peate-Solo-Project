@@ -1,14 +1,3 @@
-/* #pictureMenuImage {
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
-}
-
-.menuImageContainer {
-    max-width: 50vw;
-    max-height: 50vh;
-} */
-
 img {
     width: auto;
     height: 90vh;

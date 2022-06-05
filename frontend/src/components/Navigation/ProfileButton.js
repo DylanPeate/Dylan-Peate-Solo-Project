@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom'
 import * as sessionActions from '../../store/session';
+import './Navigation.css'
 
 function ProfileButton({ user }) {
     const dispatch = useDispatch();
@@ -9,15 +10,24 @@ function ProfileButton({ user }) {
     const history = useHistory()
 
     const openMenu = () => {
-        if (showMenu) return;
-        setShowMenu(true);
+        const menu = document.querySelector('.slideIn')
+        if (showMenu) {
+            menu.classList.remove('dismiss')
+            menu.classList.add('selected')
+        } else {
+            setShowMenu(true);
+            menu.classList.add('dismiss')
+            menu.classList.remove('selected')
+        }
     };
 
     useEffect(() => {
+        console.log(showMenu)
         if (!showMenu) return;
 
         const closeMenu = () => {
             setShowMenu(false);
+
         };
 
         document.addEventListener('click', closeMenu);
@@ -31,19 +41,30 @@ function ProfileButton({ user }) {
         dispatch(sessionActions.logout());
     };
 
+    const visitProfile = (e) => {
+        e.preventDefault();
+        history.push('/')
+    }
+
     return (
         <>
-            <button onClick={openMenu}>
+            <button onClick={openMenu} id='userMenu'>
                 <i className="fa-solid fa-user-astronaut"></i>
             </button>
-            {showMenu && (
-                <ul className="profile-dropdown">
-                    <li>{user.username}</li>
-                    <li>{user.email}</li>
-                    <li>
-                        <button onClick={logout}>Log Out</button>
-                    </li>
-                </ul>
+            {true && (
+                <div className="slideIn">
+                    <ul className="profile-dropdown">
+                        <li className="username">{user.username}</li>
+                        <div className="dropDownButtons">
+                            <li id="visitProfileContainer">
+                                <button className="menuButton" onClick={visitProfile}>Your Pics</button>
+                            </li>
+                            <li id='logoutContainer'>
+                                <button className="menuButton" onClick={logout}>Log Out</button>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
             )}
         </>
     );
