@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
-import { getComments } from '../../store/comment'
+import { getComments, deleteCommentThunk } from '../../store/comment'
 import './Comments.css'
 
 function ShowComments(picture) {
@@ -11,7 +11,7 @@ function ShowComments(picture) {
     const selectedPicture = pictures[pictureId]
     let sessionUser = useSelector(state => state.session.user);
     const comments = Object.values(useSelector(state => state.comments))
-    // const [comments, setComments] = useState([])
+    const reversedComments = [...comments].reverse()
 
     useEffect(() => {
         const stiliFunc = async () => {
@@ -22,13 +22,25 @@ function ShowComments(picture) {
         stiliFunc()
     }, [dispatch])
 
+    const delComment = comment => {
+        dispatch(deleteCommentThunk(comment))
+    }
+
     return (
         <div>
             {
-                comments.length > 0 && comments.map(comment => {
+                comments.length > 0 && reversedComments.map(comment => {
                     return (
-                        <div className='commentBody' key={comment.id}>
-                            {comment.body}
+                        <div className='comment' key={comment.id}>
+                            <div className='commentUser'>
+                                {comment.commentUser}
+                            </div>
+                            <div className='commentBody'>
+                                {comment.body}
+                            </div>
+                            <div className='commentDelBtnDiv'>
+                                <button className='commentDelBtn' onClick={() => delComment(comment)}>Delete</button>
+                            </div>
                         </div>
                     )
                 })

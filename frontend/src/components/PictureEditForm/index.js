@@ -30,15 +30,15 @@ function PictureEditForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const editPic = {
-            id: selectedPicture.id,
-            userId: sessionUser.id,
-            albumId: selectedPicture.albumId,
-            imageLink: selectedPicture.imageLink,
+            id: selectedPicture?.id,
+            userId: sessionUser?.id,
+            albumId: selectedPicture?.albumId,
+            imageLink: selectedPicture?.imageLink,
             title,
             description,
-            private: selectedPicture.private,
-            longitude: selectedPicture.longitude,
-            latitude: selectedPicture.latitude
+            private: selectedPicture?.private,
+            longitude: selectedPicture?.longitude,
+            latitude: selectedPicture?.latitude
         }
         dispatch(editPicture(editPic))
             .then(() => history.push(`/picture/${selectedPicture.id}`))

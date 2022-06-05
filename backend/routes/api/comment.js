@@ -16,7 +16,21 @@ const validateComments = [
 ];
 
 router.post('/', validateComments, requireAuth, asyncHandler(async (req, res) => {
-    const newComment = await db.Comment.create(req.body)
+    const {
+        userId,
+        body,
+        pictureId,
+        commentUser
+    } = req.body
+    const comment = await db.Comment.build({
+        userId,
+        body,
+        pictureId,
+        commentUser
+    })
+    const newComment = await comment.save()
+
+    // const newComment = await db.Comment.create(req.body)
     res.json(newComment)
 }));
 
@@ -32,6 +46,12 @@ router.get('/:pictureId', asyncHandler(async (req, res) => {
     const pictureId = req.params.pictureId;
     const comments = await db.Comment.findAll({ where: { pictureId } })
     res.json(comments)
+}))
+
+router.delete('/', requireAuth, asyncHandler(async (req, res) => {
+    const deletedComment = await db.Comment.findByPk(req.body.id)
+    await deletedComment.destroy()
+    return res.json(req.body.id)
 }))
 
 module.exports = router;

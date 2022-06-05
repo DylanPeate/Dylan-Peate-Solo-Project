@@ -22,6 +22,11 @@ module.exports = {
         allowNull: false,
         references: { model: 'Pictures' }
       },
+      commentUser: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        references: { model: 'Users', key: 'username' }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

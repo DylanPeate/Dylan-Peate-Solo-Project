@@ -16,6 +16,10 @@ function PictureMenu() {
 
     const history = useHistory();
     let sessionUser = useSelector(state => state.session.user);
+    if (!sessionUser) {
+        sessionUser = { id: 1 }
+        history.push('/')
+    }
 
     useEffect(() => {
         dispatch(getPictures())

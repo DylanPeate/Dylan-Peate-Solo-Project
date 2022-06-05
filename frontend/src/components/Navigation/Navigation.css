@@ -1,0 +1,10 @@
+.navBar {
+    background-color: blueviolet;
+    position: sticky;
+    height: 80px;
+    width: 100vw;
+    top: 0px;
+    padding: 0;
+    margin: 0;
+    z-index: 999;
+}
