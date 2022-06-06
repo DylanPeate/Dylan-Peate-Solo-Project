@@ -21,7 +21,7 @@ function PictureEditForm() {
         if (!sessionUser || sessionUser.id !== selectedPicture.userId) {
             history.push('/')
         }
-    }, [])
+    }, [history, sessionUser, selectedPicture.userId])
 
     useEffect(() => {
         dispatch(getPictures())
@@ -55,10 +55,10 @@ function PictureEditForm() {
 
     return (
         <>
-            <img id='editFormPic' src={selectedPicture?.imageLink}></img>
+            <img id='editFormPic' alt={''} src={selectedPicture?.imageLink}></img>
             <form id='pictureEditForm' onSubmit={e => handleSubmit(e)}>
                 {errors && <ul>
-                    {errors.map((error, i) => <li key={i}>{error}</li>)}
+                    {errors.map((error, i) => <li className="errorsLiMap" key={i}>{error}</li>)}
                 </ul>}
                 <label>Title:</label>
                 <input

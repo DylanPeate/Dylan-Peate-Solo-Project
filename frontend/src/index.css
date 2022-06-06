@@ -215,3 +215,7 @@ input:-webkit-autofill {
 ::-webkit-scrollbar {
     display: none;
 }
+
+.errorsLiMap {
+    color: red;
+}

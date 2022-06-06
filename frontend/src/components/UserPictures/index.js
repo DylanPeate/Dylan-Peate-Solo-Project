@@ -21,10 +21,10 @@ function UserPictures() {
         return (
             <div className='photogrid' id='userPhotoGrid'>
                 {
-                    reversePics && reversePics.map((picture) => {
+                    reversePics && reversePics.map((picture, idx) => {
                         return (
                             <div className='picture-container' key={picture.id}>
-                                <img src={picture?.imageLink} onClick={() => history.push(`/picture/${picture.id}`)} className='picture'></img>
+                                <img src={picture?.imageLink} alt={idx} onClick={() => history.push(`/picture/${picture.id}`)} className='picture'></img>
                                 <figcaption className='pictureCaption'>{picture?.title}</figcaption>
                             </div>
                         )

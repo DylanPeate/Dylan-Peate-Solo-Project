@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Redirect, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import { createPicture } from '../../store/pictures'
 import './PictureCreation.css'
@@ -17,7 +17,7 @@ function PictureCreation() {
         if (!sessionUser) {
             history.push('/signup')
         }
-    }, [])
+    }, [sessionUser, history])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -41,7 +41,7 @@ function PictureCreation() {
         <div className="picFormContain">
             <form id='createPictureForm' onSubmit={e => handleSubmit(e)}>
                 <ul className="picFormErrors">
-                    {errors.map((error, i) => <li key={i}>{error}</li>)}
+                    {errors.map((error, i) => <li className="errorsLiMap" key={i}>{error}</li>)}
                 </ul>
                 <label>Picture URL:</label>
                 <input

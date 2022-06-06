@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
-import { createComment, getComments } from '../../store/comment'
+import { createComment } from '../../store/comment'
 import './CommentCreation.css'
 
 function CommentCreation({ picture, setCommentCreate }) {
@@ -17,7 +17,7 @@ function CommentCreation({ picture, setCommentCreate }) {
         if (!sessionUser) {
             history.push('/signup')
         }
-    }, [])
+    }, [sessionUser, history])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -43,16 +43,16 @@ function CommentCreation({ picture, setCommentCreate }) {
         return setErrors(['Comment body must be less than 255 characters.'])
         //create form, create button to make comment
     }
-    let subBtnBool = () => {
-        if (errors.length) {
-            return false;
-        } return true;
-    }
+    // let subBtnBool = () => {
+    //     if (errors.length) {
+    //         return false;
+    //     } return true;
+    // }
     return (
         <div className="commentCreation">
             <form id='createCommentForm' onSubmit={e => handleSubmit(e)}>
                 <ul>
-                    {errors.map((error, i) => <li key={i}>{error}</li>)}
+                    {errors.map((error, i) => <li className="errorsLiMap" key={i}>{error}</li>)}
                 </ul>
                 <div className="commentCreateContainer">
                     {/* <label>Comment</label> */}
