@@ -6,6 +6,13 @@
 
 <p align=center><a href='https://pictore.herokuapp.com/'>Live Link To Pictore!</a></p>
 
+### Splash Page
+
+### Login
+
+### Sign Up
+
+### App
   
   ## About
   
