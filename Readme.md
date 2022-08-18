@@ -2,7 +2,9 @@
 
 <h3>An app to share photos with the world!</h3>
 
-<p align=center>Pictore is a flickr clone which gives users the abilities to upload, view, and interact with amazing images and people.</p>
+<p align=center>Pictore is a Flickr clone that gives users the ability to upload, view, and interact with amazing images and people.
+
+</p>
 
 <p align=center><a href='https://pictore.herokuapp.com/'>Live Link To Pictore!</a></p>
 
