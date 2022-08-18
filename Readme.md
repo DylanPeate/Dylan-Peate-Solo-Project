@@ -8,9 +8,15 @@
 
 ### Splash Page
 
+<img width="1726" alt="image" src="https://user-images.githubusercontent.com/96932019/185383846-9bfec62a-8cf3-47a0-86ba-e466907adb2a.png">
+
 ### Login
 
+<img width="1726" alt="image" src="https://user-images.githubusercontent.com/96932019/185383929-c4eb8241-cccc-4c16-b972-c9065f3e75de.png">
+
 ### Sign Up
+
+<img width="1726" alt="image" src="https://user-images.githubusercontent.com/96932019/185383982-ec552358-5217-48d2-90d8-cf419732dcf4.png">
 
 ### App
   
